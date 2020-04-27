@@ -14,11 +14,14 @@ const distinctElementsSum = (array1, array2) => {
 
     let sum = 0, obj = {};
 
+    //push all the elements of array1 into obj and set value to true
     for(let i = 0; i < array1.length; i++) {
         obj[array1[i]] = true;
     }
 
+    //iterate through array2
     for(let i = 0; i < array2.length; i++) {
+        //if element of array2 exists in obj,change it's value to false else keep it true(it is distinct)
         if(obj[array2[i]]) {
             obj[array2[i]] = false;
         } else {
@@ -26,6 +29,7 @@ const distinctElementsSum = (array1, array2) => {
         }
     }
 
+    //iterate through obj and add all the keys which have value : true
     for(item in obj) {
         if(obj[item] === true) {
             sum = sum + parseInt(item);
