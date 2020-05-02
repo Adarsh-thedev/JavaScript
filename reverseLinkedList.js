@@ -1,5 +1,5 @@
 //Reverse a linked list
-// 10 -> 25 -> 30 -> 35 => 35 -> 30 -> 25 -> 10
+// 10 -> 25 -> 30 -> 35 -> null => 35 -> 30 -> 25 -> 10 -> null
 
 class Node {
     constructor(value) {
@@ -30,17 +30,27 @@ class LinkedList {
 }
 
 const reverseLinkedList = (list) => {
+    //If list is emepty or has only one node, return the list as it is
     if(!list.head || list.head.next === null) {
         return list;
     }
 
+    //initiate previousNode = null and currentNode as head node
     let previousNode = null, currentNode = list.head;
     while(currentNode) {
+        //hold the reference of next node in original list in temp
         let temp = currentNode.next;
+        //reverese pointers
+        //null(prev) <- head(current)
         currentNode.next = previousNode;
+        //shift pointers of previousNode and currentNode to respective next nodes;
         previousNode = currentNode;
         currentNode = temp;
     }
+    //at the end previousNode will point to last node of the original list 
+    //and cureentNode will point to null
+    //The list is reversed and head will be previousNode
+    
     return previousNode;
 } 
 
