@@ -1,3 +1,6 @@
+//Reverse a linked list
+// 10 -> 25 -> 30 -> 35 => 35 -> 30 -> 25 -> 10
+
 class Node {
     constructor(value) {
         this.value = value;
@@ -26,7 +29,24 @@ class LinkedList {
     }
 }
 
+const reverseLinkedList = (list) => {
+    if(!list.head || list.head.next === null) {
+        return list;
+    }
+
+    let previousNode = null, currentNode = list.head;
+    while(currentNode) {
+        let temp = currentNode.next;
+        currentNode.next = previousNode;
+        previousNode = currentNode;
+        currentNode = temp;
+    }
+    return previousNode;
+} 
+
 let myList = new LinkedList();
 myList.append(10);
 myList.append(25);
-console.log(myList.append(30));
+myList.append(30);
+myList.append(35);
+console.log(reverseLinkedList(myList));
